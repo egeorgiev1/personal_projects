@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.group17.model">
+
+    <application android:name=".helper.DoppelgangerApplication">
+        <service
+            android:name=".SyncService"
+            android:enabled="true"
+            android:exported="true"></service>
+    </application>
+
+</manifest>

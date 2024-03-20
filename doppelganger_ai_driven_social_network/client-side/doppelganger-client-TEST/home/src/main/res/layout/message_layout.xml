@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/before_space">
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:padding="16dp"
+        android:shape="ring"
+        android:innerRadius="0dp"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="20dp"
+        android:layout_marginVertical="12dp"
+        android:layout_marginHorizontal="75dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:background="#e63973"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/message_background">
+
+            <!-- da vida ellipsis, limit da bude na edin red, da vida max number of characters ili max horizontal size -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/message_view"
+                android:text="I see you're a man of culture as well...I see you're a man of culture as well...I see you're a man of culture as well...I see you're a man of culture as well...I see you're a man of culture as well...I see you're a man of culture as well..."
+                android:textSize="16sp"
+                android:paddingVertical="1.5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_view"
+                android:text="3:15PM"
+                android:textSize="16sp"
+                android:paddingVertical="1.5dp"
+                android:gravity="right"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/after_space">
+    </LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

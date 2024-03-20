@@ -1,0 +1,122 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    // These repositories are only for Gradle plugins?
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" } // For the Butterknife gradle plugin snapshot
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT' // Butterknife plugin for library projects
+    }
+}
+
+// Can't put all shared dependencies here, because it doesn't work for annotation libraries? TODO: Find the source of this info!
+allprojects {
+    // These repositories are used by root + all subprojects for dependencies
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }                      // For PermissionsDispatcher
+        maven { url 'https://repo.spring.io/libs-milestone' }   // For Android Annotations REST
+    }
+}
+
+// Shared dependencies
+ext {
+    def AAVersion = '4.4.0'
+    def GuavaVersion = '24.0-android'
+    def PermissionsDispatcherVersion = '3.0.1' // DISCLAIMER: 3.0.0 is officially supported, NOT 3.0.1
+    def PermissionsDispatcherPluginVersion = '2.1.1'
+    def OttoVersion = '1.3.8'
+    def RetrofitVersion = '2.3.0'
+    def GlideVersion = '4.6.1'
+    def Dagger2Version = '2.15'
+    def ViewModeLiveDataVersion = '1.1.0'
+    def RoomVersion = '1.0.0'
+    def PagingVersion = '1.0.0-beta1'
+    def MockitoVersion = '2.16.0'
+    def MarkdownViewVersion = '1.1.0'
+    sharedDependencies = [
+            // Model Module
+            [configuration: "implementation", dependency: project(":model")],
+
+            // Shared Module
+            [configuration: "implementation", dependency: project(":shared")],
+
+            // AndroidAnnotations
+            [configuration: "implementation", dependency: "org.androidannotations:androidannotations-api:$AAVersion"],
+            [configuration: "annotationProcessor", dependency: "org.androidannotations:androidannotations:$AAVersion"],
+
+            // AndroidAnnotationsPlugins
+            [configuration: "annotationProcessor", dependency: "com.github.AleksanderMielczarek:AndroidAnnotationsPermissionsDispatcherPlugin:$PermissionsDispatcherPluginVersion"],
+            [configuration: "annotationProcessor", dependency: "org.androidannotations:otto:$AAVersion"],
+
+            // Libs
+            [configuration: "implementation", dependency: "com.google.guava:guava:$GuavaVersion"],
+            [configuration: "implementation", dependency: "com.squareup:otto:$OttoVersion"],
+            [configuration: "implementation", dependency: "com.github.hotchemi:permissionsdispatcher:$PermissionsDispatcherVersion"],
+            [configuration: "annotationProcessor", dependency: "com.github.hotchemi:permissionsdispatcher-processor:$PermissionsDispatcherVersion"],
+            [configuration: "implementation", dependency: "us.feras.mdv:markdownview:$MarkdownViewVersion"],
+
+            // Android Architectural Components: ViewModel and LiveData
+            [configuration: "implementation", dependency: "android.arch.lifecycle:extensions:$ViewModeLiveDataVersion"],
+            [configuration: "annotationProcessor", dependency: "android.arch.lifecycle:compiler:$ViewModeLiveDataVersion"],
+
+            // Android Architectural Components: Room
+            [configuration: "implementation", dependency: "android.arch.persistence.room:runtime:$RoomVersion"],
+            [configuration: "annotationProcessor", dependency: "android.arch.persistence.room:compiler:$RoomVersion"],
+
+            // Android Architectural Components: Paging
+            [configuration: "implementation", dependency: "android.arch.paging:runtime:$PagingVersion"],
+
+            // Test helpers for LiveData
+            [configuration: "testImplementation", dependency: "android.arch.core:core-testing:$ViewModeLiveDataVersion"],
+
+            // Test helpers for Room
+            [configuration: "testImplementation", dependency: "android.arch.persistence.room:testing:$RoomVersion"],
+
+            // Mockito
+            [configuration: "testImplementation", dependency: "org.mockito:mockito-core:$MockitoVersion"],
+
+            // Support Libraries(TODO: VERSION IN VARS!)
+
+            // Test Libraries(TODO: VERSION IN VARS!)(DISCLAIMER: can't include androidTestImplementation dependencies!)
+
+            // Retrofit
+            [configuration: "implementation", dependency: "com.squareup.retrofit2:retrofit:$RetrofitVersion"],
+            [configuration: "implementation", dependency: "com.squareup.retrofit2:converter-gson:$RetrofitVersion"], // installs GSON as a dependency?
+
+            // Glide
+            [configuration: "implementation", dependency: "com.github.bumptech.glide:glide:$GlideVersion"],
+            [configuration: "annotationProcessor", dependency: "com.github.bumptech.glide:compiler:$GlideVersion"],
+
+            // Dagger 2
+            [configuration: "implementation", dependency: "com.google.dagger:dagger-android:$Dagger2Version"],
+            [configuration: "implementation", dependency: "com.google.dagger:dagger-android-support:$Dagger2Version"],
+            [configuration: "annotationProcessor", dependency: "com.google.dagger:dagger-android-processor:$Dagger2Version"],
+            [configuration: "annotationProcessor", dependency: "com.google.dagger:dagger-compiler:$Dagger2Version"],
+
+
+            [configuration: "implementation", dependency: "com.squareup.retrofit2:converter-scalars:2.1.0"],
+            [configuration: "debugImplementation", dependency: "com.amitshekhar.android:debug-db:1.0.3"],
+            [configuration: "implementation", dependency: "com.github.jkwiecien:EasyImage:1.3.1"],
+
+            [configuration: "implementation", dependency: "com.android.support.constraint:constraint-layout:1.1.0"],
+            [configuration: "implementation", dependency: "com.android.support:design:27.1.0"],
+            [configuration: "implementation", dependency: "com.android.support:appcompat-v7:27.1.0"],
+    ]
+}
+
+subprojects {
+    // Shared between all subprojects(excluding root project)
+    // DISCLAIMER: Will be applied to the app project, which is NOT a libary!..... or am I wrong?
+    apply plugin: 'com.jakewharton.butterknife'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

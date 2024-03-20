@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/background_gradient"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp">
+
+        <!-- We use this hack so that the email edittext won't be focused when the activity opens -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px" />
+
+        <ImageView
+            android:layout_width="550dp"
+            android:layout_height="309dp"
+            android:background="@drawable/logo"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="125dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dancingscript_regular"
+            android:text="Doppelganger"
+            android:textColor="@android:color/white"
+            android:textSize="70sp"
+            android:layout_marginTop="-52dp"/>
+
+        <!-- TODO: fix these inputs to not use TextInputLayout -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:hint="Email"
+            android:textColorHint="@android:color/white">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:drawableStart="@drawable/ic_email"
+                android:textSize="20sp"
+                android:paddingStart="14dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="10dp"
+                android:id="@+id/email_input"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:hint="Password"
+            android:textColorHint="@android:color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@android:color/white">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:drawableStart="@drawable/ic_lock"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                android:paddingStart="14dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="10dp"
+                android:id="@+id/password_input"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="14dp"
+            android:theme="@style/AppTheme.Button"
+            android:text="LOGIN"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/sign_in_white"
+            android:paddingLeft="320dp"
+            android:drawablePadding="-310dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/login_button"/>
+
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginTop="16dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="Forgot your login details?"-->
+                <!--android:textColor="@android:color/white"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:layout_marginLeft="5sp"-->
+                <!--android:text="Get help signing in."-->
+                <!--android:textColor="#FF4081"-->
+                <!--android:id="@+id/forgot_password_button"-->
+                <!--android:clickable="true"/>-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BDBDBD"
+            android:layout_gravity="bottom"/>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="18dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Don't have an account?"
+                android:textColor="@android:color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginLeft="5sp"
+                android:text="Sign up."
+                android:textColor="#FF4081"
+                android:id="@+id/sign_up_button"
+                android:clickable="true"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

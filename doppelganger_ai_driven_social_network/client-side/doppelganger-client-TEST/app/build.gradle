@@ -1,0 +1,58 @@
+/**
+ * Make android{} available to specify android specific build settings.
+ * Source: https://developer.android.com/studio/build/index.html
+ */
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.group17.doppelganger"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion '27.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    // Add all library modules as dependencies
+    implementation project(':login')
+    implementation project(':registration')
+    implementation project(':setup')
+    implementation project(':home')
+    implementation project(':matchmaking')
+    implementation project(':userinfo')
+    implementation project(':settings')
+    implementation project(':help')
+    implementation project(':about')
+    rootProject.sharedDependencies.each {
+        add(it.configuration, it.dependency)
+    }
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    // The exclusion of the findbugs dependency of espresso is because Guava adds a different
+    // version of findbugs and a conflict arises. The version of the Guava findbugs dependency
+    // is 1.3.9 and for espresos is 2.0.1 . Espresso may not work properly if it uses
+    // the 1.3.9 version of findbugs, but we may change the version of espresso to an older
+    // to make it work with the Guava findbugs, or maybe just exclude Guava?
+    // Source: https://stackoverflow.com/questions/37347326/errorconflict-with-dependency-com-google-code-findbugsjsr305/37357786
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1') {
+        exclude group: 'com.google.code.findbugs'
+    }
+}
